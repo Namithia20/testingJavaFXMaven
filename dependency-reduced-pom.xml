@@ -14,7 +14,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
-          <release>11</release>
+          <source>11</source>
+          <target>11</target>
         </configuration>
       </plugin>
       <plugin>
@@ -34,7 +35,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.1</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -44,10 +45,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <manifestEntries>
-                    <Main-Class>com.mycompany.testmavenjavafx.MainApp</Main-Class>
-                    <Build-Number>123</Build-Number>
-                  </manifestEntries>
+                  <mainClass>com.mycompany.testmavenjavafx.MainApp</mainClass>
                 </transformer>
               </transformers>
             </configuration>
