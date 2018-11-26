@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -34,6 +36,7 @@ public class FXMLController implements Initializable {
     @FXML
     private VBox cont;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO        
@@ -46,12 +49,24 @@ public class FXMLController implements Initializable {
     {
         System.out.println((String) CB_Test.getValue()); //devuelve el valor seleccionado o escrito del combobox
        
-        Pane nuevo = new Pane(PaneCopy);
-        
+        Pane nuevo = new Pane();
+        //nuevo = new Pane(PaneCopy);
+        nuevo=clonaPanel(PaneCopy);
         double val =  nuevo.getBoundsInParent().getHeight()*2;
         nuevo.setLayoutY(val);
          System.out.println("X = "+nuevo.getLayoutX()+", Y = "+nuevo.getLayoutY() + ", bounds = "+nuevo.getBoundsInParent().getHeight());
         cont.getChildren().add(nuevo);
          System.out.println(cont.getChildren().size());
+    }
+    
+    public Pane clonaPanel(Pane p)
+    {
+        Pane clon = new  Pane();
+        
+        clon.setLayoutX(p.getLayoutX());
+        clon.setLayoutY(p.getLayoutY());
+        clon.styleProperty().set(p.getStyle());        
+        
+        return clon;
     }
 }
