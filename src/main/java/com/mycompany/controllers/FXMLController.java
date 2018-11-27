@@ -15,6 +15,13 @@ import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 public class FXMLController implements Initializable {
     
@@ -42,12 +49,22 @@ public class FXMLController implements Initializable {
     @FXML
     private Label lSelection;
     
+      @FXML
+    private Button btest;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO        
         CB_Test.getItems().addAll("A", "B", "C"); //asigna valores al desplegable
         cont.setSpacing(10);
+       
+       //Image img = new Image(getClass().getResource("/img/OF_externa.png").toExternalForm(), 50, 50, false, false);
+       //BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+      // Background b = new  Background(backImg);
+       //btest.setBackground(b);
+       btest.getStyleClass().add("bImg");
+       //btest.setGraphic(new ImageView(img));
     }   
     
     

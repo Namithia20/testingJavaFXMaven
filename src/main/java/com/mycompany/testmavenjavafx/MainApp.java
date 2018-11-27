@@ -23,6 +23,7 @@ public class MainApp extends Application {
         
         stage.setScene(scene);
         stage.show();
+         System.out.println();
     }
 
     /**
@@ -35,6 +36,8 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        
     }
 
 }
