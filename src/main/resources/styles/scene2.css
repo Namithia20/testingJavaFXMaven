@@ -5,3 +5,25 @@
 .mainFxmlClass {
 
 }
+
+#action{
+   -fx-align-content: center;
+}
+
+.acciones{
+    -fx-align-items: center;
+}
+
+.botonView{
+    -fx-background-image:url('/img/see.png');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: 20px;
+     -fx-background-position: center; 
+}
+
+.botonEdit{
+    -fx-background-image:url('/img/edit.png');
+     -fx-background-repeat: no-repeat;
+     -fx-background-size: 20px;
+     -fx-background-position: center; 
+}
