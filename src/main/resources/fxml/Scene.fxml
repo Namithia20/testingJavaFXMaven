@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +13,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.FXMLController">
    <children>
@@ -24,37 +25,38 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="492.0" prefWidth="359.0">
+            <AnchorPane>
                <children>
-                  <TitledPane fx:id="panelD" animated="false" contentDisplay="TOP" prefHeight="307.0" prefWidth="324.0" text="untitled">
-                    <content>
-                      <AnchorPane fx:id="contenedor" minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="322.0">
-                           <children>
+                  <TitledPane fx:id="panelD" animated="false" contentDisplay="TOP" text="untitled">
+                     <content>
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="360.0" prefWidth="340.0">
+                           <content>
                               <VBox fx:id="cont">
                                  <children>
-                                    <Pane fx:id="PaneCopy" prefHeight="79.0" prefWidth="324.0" style="-fx-background-color: #8B0000;">
+                                    <Pane fx:id="PaneCopy" prefHeight="75.0" prefWidth="324.0" styleClass="panelClon" stylesheets="@../styles/Styles.css">
                                        <children>
-                                          <Label layoutX="28.0" layoutY="24.0" text="Prueba" textFill="WHITE">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
+                                          <Label layoutX="22.0" layoutY="22.0" styleClass="Mytext" stylesheets="@../styles/Styles.css" text="Prueba">
+                                             
                                           </Label>
-                                          <Button layoutX="286.0" layoutY="12.0" mnemonicParsing="false" text="X" />
-                                          <TextField layoutX="115.0" layoutY="28.0" />
+                                          <Button layoutX="276.0" layoutY="2.0" mnemonicParsing="false" onAction="#deletePane" text="X" />
+                                          <TextField layoutX="106.0" layoutY="25.0" />
                                        </children>
                                     </Pane>
                                  </children>
                               </VBox>
-                           </children>
-                        </AnchorPane>
-                    </content>
+                           </content>
+                        </ScrollPane>
+                     </content>
                   </TitledPane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="comboboxPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <ComboBox fx:id="CB_Test" editable="true" layoutX="47.0" layoutY="42.0" prefHeight="25.0" prefWidth="183.0" promptText="Seleccionar" />
-                  <Button fx:id="boton" layoutX="73.0" layoutY="77.0" mnemonicParsing="false" onAction="#printValue" prefHeight="25.0" prefWidth="131.0" text="valor seleccionado" textAlignment="CENTER" />
+                  <Button fx:id="boton" layoutX="73.0" layoutY="77.0" mnemonicParsing="false" onAction="#printValue" prefHeight="25.0" prefWidth="131.0" text="Añadir" textAlignment="CENTER" />
+                  <Button layoutX="113.0" layoutY="110.0" mnemonicParsing="false" onAction="#Leedatos" text="Valores" />
+                  <ListView fx:id="Lista" editable="true" layoutX="41.0" layoutY="195.0" prefHeight="166.0" prefWidth="200.0" />
+                  <Label fx:id="lSelection" layoutX="41.0" layoutY="163.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
                </children>
             </AnchorPane>
          </children>
