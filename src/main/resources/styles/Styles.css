@@ -11,8 +11,7 @@
      -fx-background-image:url('/img/OF_externa.png');
      -fx-background-repeat: no-repeat;
      -fx-background-size: 50px;
-     -fx-background-position: center;
-     
+     -fx-background-position: center;     
      -fx-background-radius: 50px;
 }
 .bImg:pressed{ 

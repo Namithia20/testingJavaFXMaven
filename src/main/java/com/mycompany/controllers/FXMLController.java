@@ -1,5 +1,6 @@
 package com.mycompany.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -13,15 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.stage.Stage;
 
 public class FXMLController implements Initializable {
     
@@ -56,17 +54,21 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO        
-        CB_Test.getItems().addAll("A", "B", "C"); //asigna valores al desplegable
-        cont.setSpacing(10);
-       
-       //Image img = new Image(getClass().getResource("/img/OF_externa.png").toExternalForm(), 50, 50, false, false);
-       //BackgroundImage backImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-      // Background b = new  Background(backImg);
-       //btest.setBackground(b);
+       CB_Test.getItems().addAll("A", "B", "C"); //asigna valores al desplegable
+       cont.setSpacing(10);
        btest.getStyleClass().add("bImg");
-       //btest.setGraphic(new ImageView(img));
     }   
     
+    @FXML
+    public void carga(ActionEvent event) throws IOException
+    {
+        Parent vistaAnt = FXMLLoader.load(getClass().getResource("/fxml/Scene2.fxml")); 
+        Scene vistaAnt_scene = new Scene(vistaAnt);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //app_stage.hide();
+        app_stage.setScene(vistaAnt_scene);
+        app_stage.show();
+    }
     
     @FXML
     public void deletePane(ActionEvent event) {

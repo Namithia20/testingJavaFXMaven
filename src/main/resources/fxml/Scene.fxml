@@ -58,7 +58,7 @@
                   <Button layoutX="113.0" layoutY="110.0" mnemonicParsing="false" onAction="#Leedatos" text="Valores" />
                   <ListView fx:id="Lista" editable="true" layoutX="41.0" layoutY="195.0" prefHeight="166.0" prefWidth="200.0" />
                   <Label fx:id="lSelection" layoutX="41.0" layoutY="163.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
-                  <Button fx:id="btest" layoutX="215.0" layoutY="138.0" mnemonicParsing="false" onAction="#printValue" prefHeight="50.0" prefWidth="50.0">
+                  <Button fx:id="btest" layoutX="215.0" layoutY="138.0" mnemonicParsing="false" onAction="#carga" prefHeight="50.0" prefWidth="50.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
