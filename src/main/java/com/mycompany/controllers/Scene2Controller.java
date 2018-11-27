@@ -36,8 +36,11 @@ public class Scene2Controller implements Initializable {
     void backPane(ActionEvent event) throws IOException {
         Parent vistaAnt = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); 
         Scene vistaAnt_scene = new Scene(vistaAnt);
+        vistaAnt_scene.getStylesheets().add("/styles/Styles.css"); 
+        
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         //app_stage.hide();
+        app_stage.setTitle("Testing JavaFX and Maven");
         app_stage.setScene(vistaAnt_scene);
         app_stage.show();
     }

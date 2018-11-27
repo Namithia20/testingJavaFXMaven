@@ -64,7 +64,9 @@ public class FXMLController implements Initializable {
     {
         Parent vistaAnt = FXMLLoader.load(getClass().getResource("/fxml/Scene2.fxml")); 
         Scene vistaAnt_scene = new Scene(vistaAnt);
+        vistaAnt_scene.getStylesheets().add("/styles/scene2.css"); 
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setTitle("Testing JavaFX and Maven");
         //app_stage.hide();
         app_stage.setScene(vistaAnt_scene);
         app_stage.show();
