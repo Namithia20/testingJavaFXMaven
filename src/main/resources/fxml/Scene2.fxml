@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="com.mycompany.controllers.Scene2Controller">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.Scene2Controller">
     <stylesheets>
         <URL value="@/styles/scene2.css" />
     </stylesheets>
    <children>
       <Button fx:id="back" layoutX="289.0" layoutY="216.0" mnemonicParsing="false" onAction="#backPane" text="back" />
-      <Label layoutX="260.0" layoutY="113.0" text="Label">
+      <Label fx:id="l_Text" layoutX="260.0" layoutY="113.0" text="Label">
          <font>
             <Font size="40.0" />
          </font>

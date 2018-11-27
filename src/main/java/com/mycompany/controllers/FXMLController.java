@@ -62,8 +62,27 @@ public class FXMLController implements Initializable {
     @FXML
     public void carga(ActionEvent event) throws IOException
     {
-        Parent vistaAnt = FXMLLoader.load(getClass().getResource("/fxml/Scene2.fxml")); 
-        Scene vistaAnt_scene = new Scene(vistaAnt);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Scene2.fxml"));
+        Parent vistaAnt = loader.load(); 
+        
+        Scene2Controller controller = loader.getController();
+        if( CB_Test.getValue() == null)
+        {            
+            controller.initData("sin datos");
+        }else            
+        {
+            if(CB_Test.getValue().trim().isEmpty() || CB_Test.getValue().trim().isBlank())
+            {
+                controller.initData("sin datos");
+            }
+            else
+            {
+                controller.initData(CB_Test.getValue());
+            }
+        }
+        
+        Scene vistaAnt_scene = new Scene(vistaAnt);        
         vistaAnt_scene.getStylesheets().add("/styles/scene2.css"); 
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setTitle("Testing JavaFX and Maven");

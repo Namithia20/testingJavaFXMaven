@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -24,6 +25,9 @@ import javafx.stage.Stage;
  */
 public class Scene2Controller implements Initializable {
 
+    @FXML
+    private Label l_Text;
+    
     /**
      * Initializes the controller class.
      */
@@ -45,4 +49,8 @@ public class Scene2Controller implements Initializable {
         app_stage.show();
     }
     
+    public void initData(String val)
+    {
+        l_Text.setText(val);
+    }
 }
