@@ -9,9 +9,12 @@ import com.mycompany.testmavenjavafx.tableData;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +29,9 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -95,10 +100,31 @@ public class Scene2Controller implements Initializable {
         rellenaTabla( datos() );
     }    
     
+     @FXML
+    void ventanaEmergente(ActionEvent event) throws IOException 
+    {   
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dialogForm.fxml"));
+        Parent parent =loader.load();
+        DialogFormController controller = loader.getController();
+        
+        Scene s = new Scene (parent, 500, 200);
+        Stage st = new Stage();
+        st.setTitle("Observaciones");
+        st.resizableProperty().setValue(Boolean.FALSE);        
+        //st.initStyle(StageStyle.UNIFIED);
+        st.initModality(Modality.APPLICATION_MODAL);
+        st.setOnCloseRequest(evt->{ 
+            evt.consume(); //evita que se ejecute el evento de cierre de ventana
+        });
+        st.setScene(s);
+        st.showAndWait();        
+    }   
+    
+    
+    
     @FXML
     void filtrar(ActionEvent event) 
-    {
-        System.out.println("filtro");
+    {       
         String f = selectFilter.getValue().toString();
         switch(f)
         {
@@ -110,14 +136,12 @@ public class Scene2Controller implements Initializable {
             break;
             default: filtroEstado = -1;
             break;
-        }
-        
+        }        
         rellenaTabla(datosFiltro( datos(), filtroEstado));        
     }
     
     public void rellenaTabla(ObservableList<tableData> lista)
     {
-        System.out.println("tabla filtrada");
         tv.getItems().clear();
         tv.setItems(lista);
         tv.getSortOrder().add(name);
@@ -155,6 +179,16 @@ public class Scene2Controller implements Initializable {
         datos.add(new tableData(5000, "Calibre BMV 25", "parada"));
         datos.add(new tableData(2, "Calibre BMV 25", "normal"));
         
+        for(tableData d:datos)
+        {
+            ((Button) d.getAcctions().getChildren().get(1)).setOnAction((ActionEvent event) -> {
+                try {
+                    ventanaEmergente(event);
+                } catch (IOException ex) {
+                    Logger.getLogger(Scene2Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        }
         
         return datos;
     }
