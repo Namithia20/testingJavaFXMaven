@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -48,12 +50,27 @@ public class Scene2Controller implements Initializable {
     @FXML
     private TableColumn<tableData, HBox> action;
     
+    @FXML
+    private ComboBox selectFilter;
+    
+    @FXML
+    private Button bFilter;
+    
+    
+    private Integer filtroEstado = 0;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        //Filter
+        ObservableList<String> estados =  FXCollections.observableArrayList();
+        estados.addAll("Todas", "Normal", "Parada", "Retrasada");        
+        selectFilter.setItems(estados);
+        selectFilter.getSelectionModel().selectFirst();
+        
+        //Table data
         name.setCellValueFactory(new PropertyValueFactory<tableData, Integer>("name")); //propiedades/variables de la clase tableData
         title.setCellValueFactory(new PropertyValueFactory<tableData, String>("title"));
         action.setCellValueFactory(new PropertyValueFactory<tableData, HBox>("acctions"));
@@ -74,10 +91,58 @@ public class Scene2Controller implements Initializable {
                 {setStyle("");}
             }
         });
-        tv.setItems( datos() );
-        tv.getSortOrder().add(name);
+        
+        rellenaTabla( datos() );
     }    
     
+    @FXML
+    void filtrar(ActionEvent event) 
+    {
+        System.out.println("filtro");
+        String f = selectFilter.getValue().toString();
+        switch(f)
+        {
+            case "Normal": filtroEstado = 0;
+            break;
+            case "Parada": filtroEstado = 2;
+            break;
+            case "Retrasada": filtroEstado = 1;
+            break;
+            default: filtroEstado = -1;
+            break;
+        }
+        
+        rellenaTabla(datosFiltro( datos(), filtroEstado));        
+    }
+    
+    public void rellenaTabla(ObservableList<tableData> lista)
+    {
+        System.out.println("tabla filtrada");
+        tv.getItems().clear();
+        tv.setItems(lista);
+        tv.getSortOrder().add(name);
+    }
+    
+    public ObservableList<tableData> datosFiltro(ObservableList<tableData> lista, Integer filtro)
+    {
+        ObservableList<tableData> data = FXCollections.observableArrayList();
+        if(filtro > -1)
+        {
+            for(tableData d:lista)
+            {
+                if(d.getEstado() == filtro)
+                {
+                    data.add(d);
+                }           
+            }
+        }
+        else
+        {
+            data = lista;
+        }               
+        
+        return data;
+    }
     
     public ObservableList<tableData> datos()
     {
