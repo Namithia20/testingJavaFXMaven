@@ -100,7 +100,7 @@ public class Scene2Controller implements Initializable {
         rellenaTabla( datos() );
     }    
     
-     @FXML
+    @FXML
     void ventanaEmergente(ActionEvent event) throws IOException 
     {   
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dialogForm.fxml"));
@@ -120,7 +120,19 @@ public class Scene2Controller implements Initializable {
         st.showAndWait();        
     }   
     
-    
+      @FXML
+    void ventana2(ActionEvent event) throws IOException 
+    {   
+        Parent vistaAnt = FXMLLoader.load(getClass().getResource("/fxml/Scene3.fxml")); 
+        Scene vistaAnt_scene = new Scene(vistaAnt);
+        vistaAnt_scene.getStylesheets().add("/styles/scene3.css"); 
+        
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //app_stage.hide();
+        app_stage.setTitle("Testing JavaFX and Maven");
+        app_stage.setScene(vistaAnt_scene);
+        app_stage.show();      
+    } 
     
     @FXML
     void filtrar(ActionEvent event) 
@@ -181,6 +193,14 @@ public class Scene2Controller implements Initializable {
         
         for(tableData d:datos)
         {
+            ((Button) d.getAcctions().getChildren().get(0)).setOnAction((ActionEvent event) -> {
+                try {
+                    ventana2(event);
+                } catch (IOException ex) {
+                    Logger.getLogger(Scene2Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            
             ((Button) d.getAcctions().getChildren().get(1)).setOnAction((ActionEvent event) -> {
                 try {
                     ventanaEmergente(event);

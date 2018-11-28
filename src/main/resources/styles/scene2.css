@@ -24,3 +24,19 @@
      -fx-background-size: 20px;
      -fx-background-position: center; 
 }
+
+/* color para filas vacias, 
+aplicar el mismo color cuando el raton este sobre una celda de una fila vacia  */
+.table-row-cell:empty, .table-cell:empty:hover {
+    -fx-background-color: whitesmoke;
+}
+ 
+/*eliminar borde de celdas en las filas vacias*/
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+}
+
+/* tamaño, bordes y color de fondo de los titulos*/
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #4682B4; 
+}
