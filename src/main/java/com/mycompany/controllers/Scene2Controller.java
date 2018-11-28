@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -39,7 +40,7 @@ public class Scene2Controller implements Initializable {
     private TableView<tableData> tv; //cambiar Node por el objeto/clase 
     
     @FXML
-    private TableColumn<tableData, String> name;
+    private TableColumn<tableData, Integer> name;
 
     @FXML
     private TableColumn<tableData, String> title;
@@ -53,11 +54,28 @@ public class Scene2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        name.setCellValueFactory(new PropertyValueFactory<tableData, String>("name")); //propiedades/variables de la clase tableData
+        name.setCellValueFactory(new PropertyValueFactory<tableData, Integer>("name")); //propiedades/variables de la clase tableData
         title.setCellValueFactory(new PropertyValueFactory<tableData, String>("title"));
         action.setCellValueFactory(new PropertyValueFactory<tableData, HBox>("acctions"));
+       
+        action.getStyleClass().add("action");
         
+        tv.setRowFactory(param -> new TableRow<tableData>(){
+            @Override                
+            public void updateItem(tableData item, boolean empty){
+                super.updateItem(item, empty);
+                if(item == null)
+                {setStyle("");}
+                else if(item.getEstado()== 1) //1 = retrasada
+                {setStyle("-fx-background-color: red; -fx-text-fill: white;");}
+                else if(item.getEstado() == 2) // 2 = parada
+                {setStyle("-fx-background-color: cyan; -fx-text-fill: white;");}
+                else
+                {setStyle("");}
+            }
+        });
         tv.setItems( datos() );
+        tv.getSortOrder().add(name);
     }    
     
     
@@ -65,10 +83,14 @@ public class Scene2Controller implements Initializable {
     {
         ObservableList<tableData> datos = FXCollections.observableArrayList();
         
-        datos.add(new tableData("OF", "Calibre XXX"));
-        datos.add(new tableData("OF2017", "Calibre BMV 25"));
+        datos.add(new tableData(15725, "Calibre XXX", "normal"));
+        datos.add(new tableData(35804, "Calibre BMV 25", "retrasada"));
+        datos.add(new tableData(1, "Calibre BMV 25", "normal"));
+        datos.add(new tableData(1, "Calibre BMV 25", "parada"));
+        datos.add(new tableData(5000, "Calibre BMV 25", "parada"));
+        datos.add(new tableData(2, "Calibre BMV 25", "normal"));
         
-        System.out.println(datos);
+        
         return datos;
     }
     

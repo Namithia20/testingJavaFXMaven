@@ -19,11 +19,11 @@
             <Font size="40.0" />
          </font>
       </Label>
-      <TableView fx:id="tv" layoutX="70.0" layoutY="134.0" prefHeight="217.0" prefWidth="487.0">
+      <TableView fx:id="tv" layoutX="70.0" layoutY="134.0" prefHeight="217.0">
         <columns>
-          <TableColumn id="name" fx:id="name" prefWidth="107.0" text="Nombre" />
-          <TableColumn id="title" fx:id="title" prefWidth="116.0" text="Titulo" />
-            <TableColumn id="action" fx:id="action" minWidth="200.0" prefWidth="206.0" text="Acciones" />
+          <TableColumn id="name" fx:id="name" editable="false" prefWidth="107.0" resizable="false" text="Nombre" />
+          <TableColumn id="title" fx:id="title" editable="false" prefWidth="215.0" resizable="false" sortable="false" text="Titulo" />
+            <TableColumn id="action" fx:id="action" editable="false" minWidth="164.0" prefWidth="164.0" resizable="false" sortable="false" text="Acciones" />
         </columns>
       </TableView>
    </children>

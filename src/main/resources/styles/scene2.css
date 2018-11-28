@@ -6,12 +6,9 @@
 
 }
 
-#action{
-   -fx-align-content: center;
-}
 
-.acciones{
-    -fx-align-items: center;
+.action{
+    -fx-alignment: center;
 }
 
 .botonView{

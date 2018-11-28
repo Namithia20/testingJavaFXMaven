@@ -15,10 +15,12 @@ import javafx.scene.layout.HBox;
  */
 public class tableData {
     
-    private String name, title;
-    private GridPane acctions;
+    private Integer name;
+    private String title;
+    private Integer estado;
+    private HBox acctions;
 
-    public tableData(String name, String title) {
+    public tableData(Integer name, String title, String est) {
         this.name = name;
         this.title = title;
         
@@ -28,13 +30,27 @@ public class tableData {
         see.getStyleClass().add("botonView");        
         edit.getStyleClass().add("botonEdit");
         
-        this.acctions = new GridPane();
-        this.acctions.add(see,0,0);
-        this.acctions.add(edit,1,0);
-        this.acctions.getStyleClass().add("acciones");
+        see.setPrefHeight(20);
+        see.setPrefWidth(25);
+        edit.setPrefHeight(20);
+        edit.setPrefWidth(25);
+        
+        this.acctions = new HBox(see, edit);
+        this.acctions.setSpacing(10);
+        this.acctions.getStyleClass().add("action");
+        
+        switch(est)
+        {
+            case "parada": this.estado = 2;
+            break;
+            case "retrasada": this.estado = 1;
+            break;
+            default: this.estado = 0;
+            break;
+        }
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
@@ -42,11 +58,16 @@ public class tableData {
         return title;
     }
 
-    public GridPane getAcctions() {
+    public HBox getAcctions() {
         return acctions;
     }
+    
+    public Integer getEstado()
+    {
+        return estado;
+    }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 
@@ -61,11 +82,28 @@ public class tableData {
         see.getStyleClass().add("botonView");
         edit.getStyleClass().add("botonEdit");
         
-        this.acctions = new GridPane();
-        this.acctions.add(see,0,0);
-        this.acctions.add(edit,1,1);
-        this.acctions.getStyleClass().add("acciones");
+        see.setPrefHeight(20);
+        see.setPrefWidth(25);
+        edit.setPrefHeight(20);
+        edit.setPrefWidth(25);
+        
+        this.acctions = new HBox(see, edit);
+        this.acctions.setSpacing(10);
+        
+        this.acctions.getStyleClass().add("action");   
     }
     
+    public void setEstado(String est)
+    {
+        switch(est)
+        {
+            case "parada": this.estado = 2;
+            break;
+            case "retrasada": this.estado = 1;
+            break;
+            default: this.estado = 0;
+            break;
+        }
+    }   
     
 }
