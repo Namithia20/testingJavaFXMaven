@@ -14,11 +14,11 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         
         
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");        
-        stage.setTitle("Testing JavaFX and Maven");
+        scene.getStylesheets().add("/styles/login.css");        
+        stage.setTitle("Login");
         
         
         stage.setScene(scene);

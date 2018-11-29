@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.testmavenjavafx;
+package com.mycompany.models;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
